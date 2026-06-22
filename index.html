@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="مصطفى لتصميم وتطوير متاجر سلة وزد الاحترافية - نحوّل متجرك إلى علامة تجارية تحقق المبيعات">
+<meta name="keywords" content="تصميم متاجر سلة, تصميم متاجر زد, تطوير متاجر إلكترونية, SEO, تحسين معدل التحويل">
+<title>Mustafa Store Design | تصميم متاجر سلة وزد الاحترافية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a56db;
+  --primary-dark: #1239a5;
+  --primary-light: #3b82f6;
+  --secondary: #10b981;
+  --secondary-dark: #059669;
+  --secondary-light: #34d399;
+  --accent: #06b6d4;
+  --bg: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --card-bg: #ffffff;
+  --shadow: rgba(0,0,0,0.08);
+  --shadow-lg: rgba(0,0,0,0.15);
+  --gradient-primary: linear-gradient(135deg, #1a56db 0%, #06b6d4 100%);
+  --gradient-secondary: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1a56db 100%);
+}
+[data-theme="dark"] {
+  --bg: #0a0f1e;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1f2937;
+  --text: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: #1f2937;
+  --card-bg: #111827;
+  --shadow: rgba(0,0,0,0.4);
+  --shadow-lg: rgba(0,0,0,0.6);
+  --gradient-hero: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e3a5f 100%);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Tajawal', 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  padding: 0 24px;
+  transition: all 0.4s ease;
+}
+.navbar.scrolled {
+  background: var(--bg);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 30px var(--shadow);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 900; font-size: 1.3rem;
+}
+.logo-icon {
+  width: 42px; height: 42px;
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; color: white;
+  box-shadow: 0 4px 15px rgba(26,86,219,0.4);
+}
+.logo-text { color: var(--text); }
+.logo-text span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-links {
+  display: flex; align-items: center; gap: 8px;
+  list-style: none;
+}
+.nav-links a {
+  padding: 8px 16px; border-radius: 8px;
+  font-size: 0.92rem; font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.nav-links a:hover { color: var(--primary); background: rgba(26,86,219,0.08); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.theme-toggle {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; transition: all 0.2s;
+  color: var(--text);
+}
+.theme-toggle:hover { background: var(--bg-tertiary); }
+.btn-nav {
+  padding: 10px 24px; border-radius: 10px;
+  background: var(--gradient-primary);
+  color: white; font-weight: 700; font-size: 0.9rem;
+  border: none; cursor: pointer; transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(26,86,219,0.35);
+}
+.btn-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26,86,219,0.45); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 8px; background: none; border: none;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--text); border-radius: 2px; transition: all 0.3s;
+}
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  background: var(--gradient-hero);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 100px 24px 60px;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(26,86,219,0.3) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(16,185,129,0.2) 0%, transparent 50%),
+              radial-gradient(ellipse at 60% 80%, rgba(6,182,212,0.15) 0%, transparent 50%);
+}
+.hero-grid { position: absolute; inset: 0; opacity: 0.04;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+  linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px; }
+.particles { position: absolute; inset: 0; overflow: hidden; }
+.particle {
+  position: absolute; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  animation: float-particle linear infinite;
+}
+@keyframes float-particle {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 18px; border-radius: 50px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem; font-weight: 500;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+  animation: fadeInDown 0.8s ease both;
+}
+.hero-badge-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--secondary-light);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.25;
+  margin-bottom: 20px;
+  animation: fadeInDown 0.8s ease 0.1s both;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, #34d399, #06b6d4);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.9;
+  margin-bottom: 36px;
+  max-width: 520px;
+  animation: fadeInDown 0.8s ease 0.2s both;
+}
+.hero-btns {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  animation: fadeInDown 0.8s ease 0.3s both;
+}
+.btn-primary {
+  padding: 14px 32px; border-radius: 12px;
+  background: var(--gradient-secondary);
+  color: white; font-weight: 700; font-size: 1rem;
+  border: none; cursor: pointer; transition: all 0.3s;
+  box-shadow: 0 6px 20px rgba(16,185,129,0.4);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(16,185,129,0.5); }
+.btn-outline {
+  padding: 14px 32px; border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  color: white; font-weight: 700; font-size: 1rem;
+  border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s;
+  backdrop-filter: blur(10px);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+.hero-stats {
+  display: flex; gap: 32px; margin-top: 40px;
+  animation: fadeInDown 0.8s ease 0.4s both;
+}
+.hero-stat { color: white; }
+.hero-stat-num { font-size: 1.8rem; font-weight: 900; }
+.hero-stat-num span { color: var(--secondary-light); }
+.hero-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+/* Hero visual */
+.hero-visual {
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeInUp 1s ease 0.3s both;
+  position: relative;
+}
+.hero-mockup {
+  width: 100%; max-width: 480px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+.mockup-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 16px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+.d1 { background: #ff5f57; }
+.d2 { background: #febc2e; }
+.d3 { background: #28c840; }
+.mockup-bar {
+  flex: 1; height: 28px; border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; padding: 0 12px;
+  font-size: 0.7rem; color: rgba(255,255,255,0.4);
+}
+.mockup-screen {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px; overflow: hidden;
+}
+.mockup-hero-sim {
+  background: linear-gradient(135deg, #1a56db, #06b6d4);
+  padding: 24px; position: relative;
+}
+.mockup-hero-sim h3 { color: white; font-size: 0.9rem; margin-bottom: 6px; }
+.mockup-hero-sim p { color: rgba(255,255,255,0.7); font-size: 0.7rem; }
+.mockup-btn-sim {
+  display: inline-block; margin-top: 12px;
+  padding: 6px 16px; border-radius: 6px;
+  background: var(--secondary); color: white;
+  font-size: 0.7rem; font-weight: 700;
+}
+.mockup-cards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px; padding: 12px;
+}
+.mockup-card-sim {
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 12px;
+}
+.mockup-card-img {
+  width: 100%; height: 50px; border-radius: 6px;
+  background: linear-gradient(135deg, rgba(26,86,219,0.3), rgba(6,182,212,0.3));
+  margin-bottom: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.mockup-card-line { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.15); margin-bottom: 4px; }
+.mockup-card-line.short { width: 60%; }
+/* Floating badges */
+.float-badge {
+  position: absolute;
+  background: var(--card-bg);
+  border-radius: 12px; padding: 10px 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--text);
+  animation: float 4s ease-in-out infinite;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.float-badge:nth-child(2) { animation-delay: -2s; }
+.float-badge .badge-icon { font-size: 1.1rem; }
+.fb1 { top: -20px; left: -30px; }
+.fb2 { bottom: 30px; right: -40px; animation-delay: -1s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+/* ===== SECTIONS ===== */
+section { padding: 100px 0; }
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-tag {
+  display: inline-block;
+  padding: 6px 18px; border-radius: 50px;
+  background: rgba(26,86,219,0.1);
+  color: var(--primary);
+  font-size: 0.85rem; font-weight: 700;
+  margin-bottom: 16px;
+  border: 1px solid rgba(26,86,219,0.2);
+}
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 900; color: var(--text);
+  line-height: 1.3; margin-bottom: 16px;
+}
+.section-title span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.section-subtitle {
+  font-size: 1.05rem; color: var(--text-secondary);
+  max-width: 600px; margin: 0 auto; line-height: 1.8;
+}
+.divider {
+  width: 60px; height: 4px;
+  background: var(--gradient-primary);
+  border-radius: 2px; margin: 20px auto 0;
+}
+/* ===== ABOUT ===== */
+.about { background: var(--bg-secondary); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.about-visual { position: relative; }
+.about-img-wrap {
+  width: 100%; aspect-ratio: 4/3;
+  border-radius: 24px; overflow: hidden;
+  background: var(--gradient-primary);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  box-shadow: 0 30px 60px var(--shadow-lg);
+}
+.about-img-inner {
+  width: 80%; height: 80%;
+  display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center; justify-content: center;
+}
+.about-icon-box {
+  width: 70px; height: 70px; border-radius: 16px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  animation: float 3s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.about-icon-box:nth-child(2) { animation-delay: -1s; }
+.about-icon-box:nth-child(3) { animation-delay: -2s; }
+.about-icon-box:nth-child(4) { animation-delay: -0.5s; }
+.about-badge-overlay {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--card-bg);
+  border-radius: 16px; padding: 16px 24px;
+  box-shadow: 0 10px 40px var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+.about-badge-num { font-size: 2rem; font-weight: 900; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.about-badge-text { font-size: 0.8rem; color: var(--text-secondary); }
+.about-content h2 { font-size: 2.2rem; font-weight: 900; margin-bottom: 20px; }
+.about-content p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 16px; }
+.about-features { list-style: none; margin-top: 24px; }
+.about-features li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+.about-features li:last-child { border-bottom: none; }
+.check-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: rgba(16,185,129,0.15);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--secondary); font-size: 0.9rem; flex-shrink: 0;
+}
+/* ===== SERVICES ===== */
+.services { background: var(--bg); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.4s ease;
+  position: relative; overflow: hidden;
+  cursor: default;
+}
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 100%; height: 3px;
+  background: var(--gradient-primary);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 0.4s ease;
+}
+.service-card:hover::before { transform: scaleX(1); transform-origin: left; }
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px var(--shadow-lg);
+  border-color: rgba(26,86,219,0.2);
+}
+.service-icon {
+  width: 60px; height: 60px; border-radius: 16px;
+  background: rgba(26,86,219,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; margin-bottom: 20px;
+  transition: all 0.3s;
+}
+.service-card:hover .service-icon {
+  background: var(--gradient-primary);
+  transform: scale(1.1) rotate(-5deg);
+}
+.service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+.service-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+/* ===== WHY ===== */
+.why { background: var(--bg-secondary); }
+.why-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+.why-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 32px;
+  text-align: center;
+  transition: all 0.4s;
+}
+.why-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px var(--shadow-lg);
+  border-color: rgba(26,86,219,0.3);
+}
+.why-icon {
+  width: 72px; height: 72px; border-radius: 20px;
+  background: var(--gradient-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; margin: 0 auto 20px;
+  box-shadow: 0 8px 25px rgba(26,86,219,0.35);
+  transition: all 0.4s;
+}
+.why-card:hover .why-icon { transform: scale(1.1) rotate(5deg); }
+.why-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+.why-card p { font-size: 0.88rem; color: var(--text-secondary); }
+/* ===== STATS ===== */
+.stats {
+  background: var(--gradient-primary);
+  padding: 80px 0;
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.stat-item { text-align: center; color: white; }
+.stat-num {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900; line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-num .plus { color: var(--secondary-light); }
+.stat-label { font-size: 0.95rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+.stat-bar {
+  width: 40px; height: 3px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px; margin: 12px auto 0;
+  position: relative; overflow: hidden;
+}
+.stat-bar::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 0; height: 100%;
+  background: white; border-radius: 2px;
+  transition: width 1.5s ease;
+}
+.stat-bar.animated::after { width: 100%; }
+/* ===== PORTFOLIO ===== */
+.portfolio { background: var(--bg); }
+.portfolio-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 28px;
+}
+.portfolio-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden;
+  transition: all 0.4s;
+}
+.portfolio-card:hover { transform: translateY(-8px); box-shadow: 0 25px 60px var(--shadow-lg); }
+.portfolio-img {
+  width: 100%; height: 220px;
+  position: relative; overflow: hidden;
+}
+.portfolio-img-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; position: relative;
+  transition: transform 0.5s ease;
+}
+.portfolio-card:hover .portfolio-img-inner { transform: scale(1.05); }
+.portfolio-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.4s;
+}
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+.overlay-btn {
+  padding: 10px 24px; border-radius: 10px;
+  background: white; color: #0f172a;
+  font-weight: 700; font-size: 0.9rem;
+  transform: translateY(20px); transition: transform 0.4s;
+}
+.portfolio-card:hover .overlay-btn { transform: translateY(0); }
+.portfolio-content { padding: 24px; }
+.portfolio-tag {
+  display: inline-block; padding: 4px 12px; border-radius: 6px;
+  background: rgba(26,86,219,0.1); color: var(--primary);
+  font-size: 0.75rem; font-weight: 600; margin-bottom: 10px;
+}
+.portfolio-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.portfolio-content p { font-size: 0.88rem; color: var(--text-secondary); }
+/* ===== TESTIMONIALS ===== */
+.testimonials { background: var(--bg-secondary); }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+.testimonial-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 32px;
+  position: relative; transition: all 0.4s;
+}
+.testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px var(--shadow-lg); }
+.quote-icon {
+  position: absolute; top: 24px; left: 24px;
+  font-size: 4rem; line-height: 1;
+  color: var(--primary); opacity: 0.1;
+  font-family: serif;
+}
+.stars { color: #f59e0b; margin-bottom: 16px; font-size: 1.1rem; }
+.testimonial-card p {
+  color: var(--text-secondary); line-height: 1.8;
+  font-size: 0.95rem; margin-bottom: 24px;
+}
+.testimonial-author {
+  display: flex; align-items: center; gap: 14px;
+  border-top: 1px solid var(--border); padding-top: 20px;
+}
+.author-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; font-weight: 700; color: white;
+}
+.author-name { font-weight: 700; font-size: 0.95rem; }
+.author-role { font-size: 0.8rem; color: var(--text-muted); }
+/* ===== PROCESS ===== */
+.process { background: var(--bg); }
+.process-steps {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 20px; position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute; top: 44px;
+  right: 10%; left: 10%;
+  height: 2px;
+  background: linear-gradient(to left, var(--primary), var(--secondary));
+  z-index: 0;
+}
+.step-item { text-align: center; position: relative; z-index: 1; }
+.step-num {
+  width: 88px; height: 88px; border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: white; margin: 0 auto 20px;
+  box-shadow: 0 8px 30px rgba(26,86,219,0.35);
+  transition: all 0.4s;
+}
+.step-item:hover .step-num { transform: scale(1.1); box-shadow: 0 15px 40px rgba(26,86,219,0.5); }
+.step-item h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+.step-item p { font-size: 0.82rem; color: var(--text-secondary); }
+/* ===== FAQ ===== */
+.faq { background: var(--bg-secondary); }
+.faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  transition: all 0.3s;
+}
+.faq-item.active { border-color: rgba(26,86,219,0.3); box-shadow: 0 8px 30px var(--shadow); }
+.faq-question {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 28px; cursor: pointer;
+  font-weight: 600; font-size: 1rem;
+  transition: color 0.3s;
+}
+.faq-item.active .faq-question { color: var(--primary); }
+.faq-toggle {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(26,86,219,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--primary); font-size: 1.2rem;
+  transition: all 0.3s; flex-shrink: 0;
+}
+.faq-item.active .faq-toggle { background: var(--primary); color: white; transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+}
+.faq-answer-inner {
+  padding: 0 28px 22px;
+  color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem;
+}
+/* ===== CONTACT ===== */
+.contact { background: var(--bg); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.6fr;
+  gap: 60px; align-items: start;
+}
+.contact-info h2 { font-size: 2rem; font-weight: 900; margin-bottom: 16px; }
+.contact-info p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 36px; }
+.contact-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px; border-radius: 16px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  margin-bottom: 16px; transition: all 0.3s;
+}
+.contact-item:hover { transform: translateX(-6px); border-color: rgba(26,86,219,0.3); }
+.contact-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--gradient-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+  box-shadow: 0 6px 20px rgba(26,86,219,0.3);
+}
+.contact-item-text { font-size: 0.82rem; color: var(--text-muted); }
+.contact-item-val { font-weight: 600; font-size: 1rem; }
+.contact-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 24px; padding: 40px;
+  box-shadow: 0 20px 60px var(--shadow);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
+.form-group input,
+.form-group textarea {
+  width: 100%; padding: 14px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  color: var(--text); font-family: 'Tajawal', sans-serif;
+  font-size: 0.95rem; transition: all 0.3s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(26,86,219,0.12);
+  background: var(--bg);
+}
+.form-group textarea { resize: vertical; min-height: 130px; }
+.btn-submit {
+  width: 100%; padding: 16px;
+  background: var(--gradient-primary);
+  color: white; font-size: 1.05rem; font-weight: 700;
+  border: none; border-radius: 12px; cursor: pointer;
+  transition: all 0.3s; font-family: 'Tajawal', sans-serif;
+  box-shadow: 0 6px 20px rgba(26,86,219,0.4);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-submit:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(26,86,219,0.5); }
+.btn-submit:active { transform: translateY(0); }
+/* ===== FOOTER ===== */
+footer {
+  background: #020617;
+  color: rgba(255,255,255,0.7);
+  padding: 80px 0 30px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 60px; margin-bottom: 60px;
+}
+.footer-brand .logo { margin-bottom: 16px; }
+.footer-brand p { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.5); }
+.footer-col h4 { color: white; font-weight: 700; margin-bottom: 20px; font-size: 1rem; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  color: rgba(255,255,255,0.5); font-size: 0.9rem;
+  transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.footer-col ul li a:hover { color: var(--primary-light); padding-right: 6px; }
+.footer-contact-item {
+  display: flex; align-items: center; gap: 10px;
+  color: rgba(255,255,255,0.5); font-size: 0.88rem; margin-bottom: 12px;
+}
+.footer-contact-icon { font-size: 1rem; color: var(--primary-light); }
+.social-links { display: flex; gap: 10px; margin-top: 20px; }
+.social-link {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; transition: all 0.3s; color: rgba(255,255,255,0.6);
+}
+.social-link:hover { background: var(--primary); border-color: var(--primary); color: white; transform: translateY(-3px); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 30px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.85rem;
+}
+.footer-bottom a { color: var(--primary-light); }
+/* ===== BACK TO TOP ===== */
+.back-top {
+  position: fixed; bottom: 30px; left: 30px; z-index: 999;
+  width: 48px; height: 48px; border-radius: 14px;
+  background: var(--gradient-primary);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.3rem;
+  box-shadow: 0 8px 25px rgba(26,86,219,0.5);
+  cursor: pointer; border: none;
+  opacity: 0; transform: translateY(20px);
+  transition: all 0.3s; pointer-events: none;
+}
+.back-top.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+.back-top:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(26,86,219,0.6); }
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+/* ===== WHATSAPP ===== */
+.whatsapp-btn {
+  position: fixed; bottom: 30px; right: 30px; z-index: 999;
+  width: 58px; height: 58px; border-radius: 18px;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: white;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+  transition: all 0.3s; cursor: pointer;
+  text-decoration: none;
+  animation: float 4s ease-in-out infinite;
+}
+.whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 15px 40px rgba(37,211,102,0.6); }
+/* ===== MOBILE NAV ===== */
+.mobile-nav {
+  display: none; position: fixed; top: 0; right: 0;
+  width: 300px; height: 100vh;
+  background: var(--bg);
+  box-shadow: -20px 0 60px rgba(0,0,0,0.2);
+  z-index: 999; padding: 80px 24px 24px;
+  flex-direction: column; gap: 8px;
+  transform: translateX(100%); transition: transform 0.4s ease;
+}
+.mobile-nav.open { transform: translateX(0); }
+.mobile-nav a {
+  display: block; padding: 14px 20px; border-radius: 12px;
+  font-weight: 600; color: var(--text);
+  transition: all 0.2s;
+}
+.mobile-nav a:hover { background: rgba(26,86,219,0.1); color: var(--primary); }
+.mobile-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 998;
+  opacity: 0; transition: opacity 0.4s;
+}
+.mobile-overlay.open { opacity: 1; }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+  .hero-btns { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-desc { margin: 0 auto 36px; }
+  .hero-badge { margin: 0 auto 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-steps { grid-template-columns: repeat(3, 1fr); }
+  .process-steps::before { display: none; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+@media (max-width: 768px) {
+  section { padding: 70px 0; }
+  .nav-links { display: none; }
+  .btn-nav { display: none; }
+  .hamburger { display: flex; }
+  .mobile-nav { display: flex; }
+  .mobile-overlay { display: block; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .contact-form { padding: 24px; }
+}
+@media (max-width: 480px) {
+  .hero-stats { flex-wrap: wrap; gap: 20px; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .process-steps { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">م</div>
+      <div class="logo-text">Mustafa <span>Store</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#services">الخدمات</a></li>
+      <li><a href="#portfolio">أعمالنا</a></li>
+      <li><a href="#why">لماذا نحن</a></li>
+      <li><a href="#faq">الأسئلة</a></li>
+      <li><a href="#contact">تواصل</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="تغيير الوضع">🌙</button>
+      <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">ابدأ مشروعك</button>
+    </div>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" onclick="closeMobile()">من نحن</a>
+  <a href="#services" onclick="closeMobile()">الخدمات</a>
+  <a href="#portfolio" onclick="closeMobile()">أعمالنا</a>
+  <a href="#why" onclick="closeMobile()">لماذا نحن</a>
+  <a href="#testimonials" onclick="closeMobile()">آراء العملاء</a>
+  <a href="#process" onclick="closeMobile()">خطوات العمل</a>
+  <a href="#faq" onclick="closeMobile()">الأسئلة الشائعة</a>
+  <a href="#contact" onclick="closeMobile()">تواصل معنا</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-content container">
+    <div>
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        متخصصون في سلة وزد منذ 2020
+      </div>
+      <h1>نحوّل متجرك الإلكتروني إلى <span class="highlight">علامة تجارية احترافية</span> تحقق المزيد من المبيعات</h1>
+      <p class="hero-desc">نقدم حلولاً متكاملة لتصميم وتطوير متاجر سلة وزد باحترافية عالية مع التركيز على الأداء، تجربة المستخدم، سرعة الموقع، وتحسين محركات البحث.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          🚀 ابدأ مشروعك الآن
+        </button>
+        <button class="btn-outline" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+          👁 مشاهدة أعمالنا
+        </button>
+        <button class="btn-outline" onclick="window.open('https://wa.me/966532203604','_blank')">
+          💬 تواصل معنا
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span>+</span>100</div>
+          <div class="hero-stat-label">مشروع منفذ</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span>+</span>50</div>
+          <div class="hero-stat-label">عميل سعيد</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">95<span>%</span></div>
+          <div class="hero-stat-label">نسبة الرضا</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-badge fb1">
+        <span class="badge-icon">⚡</span>
+        <div><div style="font-size:0.7rem;color:#64748b">سرعة التحميل</div><div style="color:#0f172a;font-size:0.85rem">98/100</div></div>
+      </div>
+      <div class="float-badge fb2">
+        <span class="badge-icon">📈</span>
+        <div><div style="font-size:0.7rem;color:#64748b">زيادة المبيعات</div><div style="color:#10b981;font-size:0.85rem">+340%</div></div>
+      </div>
+      <div class="hero-mockup">
+        <div class="mockup-header">
+          <div class="mockup-dot d1"></div>
+          <div class="mockup-dot d2"></div>
+          <div class="mockup-dot d3"></div>
+          <div class="mockup-bar">🔒 mustafa-store.com</div>
+        </div>
+        <div class="mockup-screen">
+          <div class="mockup-hero-sim">
+            <h3>متجرك الإلكتروني الاحترافي</h3>
+            <p>تجربة تسوق لا تُنسى لعملائك</p>
+            <div class="mockup-btn-sim">تسوق الآن ←</div>
+          </div>
+          <div class="mockup-cards">
+            <div class="mockup-card-sim">
+              <div class="mockup-card-img">👕</div>
+              <div class="mockup-card-line"></div>
+              <div class="mockup-card-line short"></div>
+            </div>
+            <div class="mockup-card-sim">
+              <div class="mockup-card-img">👟</div>
+              <div class="mockup-card-line"></div>
+              <div class="mockup-card-line short"></div>
+            </div>
+            <div class="mockup-card-sim">
+              <div class="mockup-card-img">👜</div>
+              <div class="mockup-card-line"></div>
+              <div class="mockup-card-line short"></div>
+            </div>
+            <div class="mockup-card-sim">
+              <div class="mockup-card-img">🕶</div>
+              <div class="mockup-card-line"></div>
+              <div class="mockup-card-line short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-wrap">
+          <div class="about-img-inner">
+            <div class="about-icon-box">🛍</div>
+            <div class="about-icon-box">🎨</div>
+            <div class="about-icon-box">⚡</div>
+            <div class="about-icon-box">📊</div>
+          </div>
+        </div>
+        <div class="about-badge-overlay">
+          <div class="about-badge-num">+5</div>
+          <div class="about-badge-text">سنوات خبرة</div>
+        </div>
+      </div>
+      <div class="about-content reveal reveal-delay-2">
+        <div class="section-tag">من نحن</div>
+        <h2>خبرة حقيقية في بناء <span style="background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent">المتاجر الإلكترونية</span></h2>
+        <p>نحن متخصصون في تصميم وتطوير متاجر سلة وزد بأحدث المعايير العالمية، ونساعد أصحاب المشاريع والمتاجر الإلكترونية على بناء حضور رقمي قوي يساهم في زيادة المبيعات وتحسين تجربة العملاء وتحقيق النمو المستدام.</p>
+        <p>نؤمن بأن التصميم الاحترافي ليس رفاهية بل ضرورة تجارية، فكل تفصيلة في متجرك تؤثر مباشرة على قرار الشراء. مصطفى يجمع الجماليات مع الوظيفة لتحقيق نتائج قابلة للقياس.</p>
+        <ul class="about-features">
+          <li><div class="check-icon">✓</div>تصميم مخصص يعكس هوية علامتك التجارية</li>
+          <li><div class="check-icon">✓</div>تطوير احترافي بأحدث تقنيات سلة وزد</li>
+          <li><div class="check-icon">✓</div>تحسين شامل للأداء والسرعة والـ SEO</li>
+          <li><div class="check-icon">✓</div>دعم فني مستمر وتسليم في الموعد المحدد</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">خدماتنا</div>
+      <h2 class="section-title">حلول متكاملة <span>لمتجرك الإلكتروني</span></h2>
+      <p class="section-subtitle">نقدم مجموعة شاملة من الخدمات المتخصصة لتحويل متجرك إلى منصة مبيعات ناجحة</p>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🛒</div>
+        <h3>تصميم متاجر سلة الاحترافية</h3>
+        <p>تصاميم مبتكرة ومخصصة لمنصة سلة تعكس هويتك التجارية وتحوّل الزوار إلى عملاء</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">🏪</div>
+        <h3>تصميم متاجر زد الاحترافية</h3>
+        <p>بناء متاجر زد باحترافية عالية مع تجربة مستخدم متميزة وتصميم يبني الثقة</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">🎨</div>
+        <h3>تحسين تجربة المستخدم UX/UI</h3>
+        <p>تحليل وتحسين رحلة العميل داخل المتجر لضمان تجربة شراء سلسة وممتعة</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">📱</div>
+        <h3>تطوير صفحات المنتجات</h3>
+        <p>صفحات منتجات احترافية مُحسّنة لزيادة معدل التحويل وإقناع العميل بالشراء</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">⚡</div>
+        <h3>تحسين سرعة المتجر</h3>
+        <p>تحسين شامل لأداء المتجر ورفع سرعة التحميل للحصول على درجات قياسية في PageSpeed</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">🔍</div>
+        <h3>تهيئة المتجر لـ SEO</h3>
+        <p>تحسين متكامل لمحركات البحث لزيادة الظهور العضوي وجذب عملاء جدد مجانًا</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">💎</div>
+        <h3>تصميم الهوية البصرية</h3>
+        <p>تصميم هوية بصرية متكاملة وشعار احترافي يميز علامتك التجارية ويثبتها في الأذهان</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">📈</div>
+        <h3>تحسين معدل التحويل</h3>
+        <p>استراتيجيات مدروسة لزيادة نسبة الزوار الذين يتحولون إلى مشترين فعليين</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📣</div>
+        <h3>إعداد الحملات التسويقية</h3>
+        <p>تخطيط وتنفيذ حملات تسويقية مدروسة لزيادة المبيعات وتوسيع قاعدة العملاء</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">🚀</div>
+        <h3>تطوير صفحات الهبوط</h3>
+        <p>صفحات هبوط عالية التحويل مصممة لحملاتك الإعلانية وعروضك الخاصة</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">🗺</div>
+        <h3>تحسين رحلة العميل</h3>
+        <p>تخطيط وتحسين كل مرحلة من رحلة العميل داخل المتجر لتقليل معدل التخلي وزيادة الإتمام</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">✨</div>
+        <h3>تصاميم مخصصة للمتجر</h3>
+        <p>إنشاء عناصر تصميمية فريدة ومخصصة تجعل متجرك مميزًا ولا يُنسى</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num"><span class="plus">+</span><span class="counter" data-target="100">0</span></div>
+        <div class="stat-label">مشروع منفذ بنجاح</div>
+        <div class="stat-bar" id="sb1"></div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num"><span class="plus">+</span><span class="counter" data-target="50">0</span></div>
+        <div class="stat-label">عميل سعيد ومخلص</div>
+        <div class="stat-bar" id="sb2"></div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num"><span class="counter" data-target="95">0</span><span class="plus">%</span></div>
+        <div class="stat-label">نسبة رضا العملاء</div>
+        <div class="stat-bar" id="sb3"></div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num"><span class="plus">+</span><span class="counter" data-target="1000">0</span></div>
+        <div class="stat-label">ساعة تطوير وتصميم</div>
+        <div class="stat-bar" id="sb4"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">لماذا نحن</div>
+      <h2 class="section-title">لماذا <span>تختارنا؟</span></h2>
+      <p class="section-subtitle">نقدم ما يتجاوز مجرد التصميم — نبني شراكة حقيقية لنجاح متجرك</p>
+      <div class="divider"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🏆</div>
+        <h3>خبرة متخصصة</h3>
+        <p>خبرة متعمقة في منصتي سلة وزد وفهم شامل لمتطلباتهما التقنية والتصميمية</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">💡</div>
+        <h3>تصاميم عصرية</h3>
+        <p>نواكب أحدث توجهات التصميم العالمية لعام 2026 لضمان مظهر احترافي ومتميز</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">⚡</div>
+        <h3>سرعة التنفيذ</h3>
+        <p>التزام صارم بالمواعيد وتسليم المشاريع في الوقت المحدد دون التنازل عن الجودة</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">🎯</div>
+        <h3>دعم فني مستمر</h3>
+        <p>لا ننتهي عند التسليم — نوفر دعمًا فنيًا مستمرًا لضمان استمرارية نجاح متجرك</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">📊</div>
+        <h3>تحسين الأداء</h3>
+        <p>نقيس النتائج ونحسّنها باستمرار — مبيعاتك وأرباحك هي معيار نجاحنا الحقيقي</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">📱</div>
+        <h3>توافق كامل مع الأجهزة</h3>
+        <p>تصاميم مثالية على الجوال والتابلت والكمبيوتر لتجربة مستخدم لا تشوبها شائبة</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">🔑</div>
+        <h3>حلول مخصصة</h3>
+        <p>كل متجر يختلف عن غيره — نبني حلولًا مخصصة تناسب طبيعة نشاطك التجاري</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">🔬</div>
+        <h3>اهتمام بأدق التفاصيل</h3>
+        <p>نؤمن بأن التفاصيل الصغيرة تصنع الفارق الكبير في تجربة العميل وقراره بالشراء</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">أعمالنا</div>
+      <h2 class="section-title">مشاريع <span>أثبتت نجاحها</span></h2>
+      <p class="section-subtitle">نماذج من أعمالنا التي حققت نتائج ملموسة لعملائنا</p>
+      <div class="divider"></div>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img">
+          <div class="portfolio-img-inner" style="background:linear-gradient(135deg,#667eea,#764ba2)">👗</div>
+          <div class="portfolio-overlay"><div class="overlay-btn">مشاهدة المشروع ←</div></div>
+        </div>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">سلة</span>
+          <h3>متجر الأزياء النسائية</h3>
+          <p>تصميم متجر أنيق لأزياء المرأة مع تجربة تسوق سلسة أدت إلى زيادة المبيعات بنسبة 280%</p>
+        </div>
+      </div>
+      <div class="portfolio-card reveal reveal-delay-1">
+        <div class="portfolio-img">
+          <div class="portfolio-img-inner" style="background:linear-gradient(135deg,#f093fb,#f5576c)">💄</div>
+          <div class="portfolio-overlay"><div class="overlay-btn">مشاهدة المشروع ←</div></div>
+        </div>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">زد</span>
+          <h3>متجر مستحضرات التجميل</h3>
+          <p>تصميم فاخر لمتجر تجميل مع صفحات منتجات محسّنة رفعت معدل التحويل 3 أضعاف</p>
+        </div>
+      </div>
+      <div class="portfolio-card reveal reveal-delay-2">
+        <div class="portfolio-img">
+          <div class="portfolio-img-inner" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">👟</div>
+          <div class="portfolio-overlay"><div class="overlay-btn">مشاهدة المشروع ←</div></div>
+        </div>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">سلة</span>
+          <h3>متجر الأحذية الرياضية</h3>
+          <p>منصة احترافية لأحذية رياضية مع تصفية متقدمة ومقارنة منتجات وتجربة تسوق ممتازة</p>
+        </div>
+      </div>
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img">
+          <div class="portfolio-img-inner" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">🏠</div>
+          <div class="portfolio-overlay"><div class="overlay-btn">مشاهدة المشروع ←</div></div>
+        </div>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">زد</span>
+          <h3>متجر الأثاث والديكور</h3>
+          <p>تصميم راقٍ لمتجر أثاث يعرض المنتجات بشكل مبهر مع نظام عرض ثلاثي الأبعاد</p>
+        </div>
+      </div>
+      <div class="portfolio-card reveal reveal-delay-1">
+        <div class="portfolio-img">
+          <div class="portfolio-img-inner" style="background:linear-gradient(135deg,#fa709a,#fee140)">🍕</div>
+          <div class="portfolio-overlay"><div class="overlay-btn">مشاهدة المشروع ←</div></div>
+        </div>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">سلة</span>
+          <h3>متجر الطعام والمأكولات</h3>
+          <p>موقع لطلبات الطعام الاحترافية مع تجربة طلب سريعة وتكامل كامل مع خدمات التوصيل</p>
+        </div>
+      </div>
+      <div class="portfolio-card reveal reveal-delay-2">
+        <div class="portfolio-img">
+          <div class="portfolio-img-inner" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">💻</div>
+          <div class="portfolio-overlay"><div class="overlay-btn">مشاهدة المشروع ←</div></div>
+        </div>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">زد</span>
+          <h3>متجر الإلكترونيات والتقنية</h3>
+          <p>متجر تقني متكامل بمواصفات مقارنة محترفة وصفحات منتجات تقنية مفصّلة</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">آراء العملاء</div>
+      <h2 class="section-title">ماذا يقول <span>عملاؤنا؟</span></h2>
+      <p class="section-subtitle">تجارب حقيقية من عملاء حققوا نتائج ملموسة مع مصطفى لتصميم المتاجر</p>
+      <div class="divider"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>تعاملت مع مصطفى لتصميم متجر سلة لبيع العبايات، والنتيجة فاقت كل توقعاتي. التصميم احترافي جدًا ومبيعاتنا ارتفعت 340% في أول شهرين!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">ن</div>
+          <div>
+            <div class="author-name">نورة العتيبي</div>
+            <div class="author-role">صاحبة متجر عبايات — سلة</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>كنت أعاني من بطء متجري وضعف المبيعات، بعد التعاون مع مصطفى أصبحت سرعة الموقع 98/100 ومعدل التحويل تضاعف ثلاث مرات!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">أ</div>
+          <div>
+            <div class="author-name">أحمد الشمري</div>
+            <div class="author-role">صاحب متجر إلكترونيات — زد</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>احترافية عالية وسرعة في التنفيذ. قدّم مصطفى حلولًا إبداعية لمتجر التجميل الخاص بي وأصبح المتجر يُضرب به المثل في المجال!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">س</div>
+          <div>
+            <div class="author-name">سارة المطيري</div>
+            <div class="author-role">صاحبة متجر تجميل — سلة</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>الدعم الفني ممتاز حتى بعد التسليم، وكلما واجهتني مشكلة يحلها في دقائق. استثمار حقيقي في نجاح متجري.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">م</div>
+          <div>
+            <div class="author-name">محمد الزهراني</div>
+            <div class="author-role">صاحب متجر أثاث — زد</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>أنصح به بشدة! أعمل معه منذ سنتين وكل مشروع يكون أفضل من السابق. يفهم احتياجات العميل ويترجمها إلى تصميم مذهل.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#fa709a,#fee140)">ر</div>
+          <div>
+            <div class="author-name">ريم الحربي</div>
+            <div class="author-role">صاحبة متجر أزياء — سلة</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p>قبل التعاون كانت مبيعاتنا تحتاج تحسين، والآن بعد إعادة تصميم المتجر بالكامل أصبحنا نحقق أرقام قياسية شهرية!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">خ</div>
+          <div>
+            <div class="author-name">خالد العنزي</div>
+            <div class="author-role">صاحب متجر رياضي — زد</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">خطوات العمل</div>
+      <h2 class="section-title">كيف <span>نعمل معك؟</span></h2>
+      <p class="section-subtitle">منهجية واضحة وشفافة تضمن حصولك على أفضل النتائج</p>
+      <div class="divider"></div>
+    </div>
+    <div class="process-steps">
+      <div class="step-item reveal">
+        <div class="step-num">🔍</div>
+        <h3>دراسة المشروع</h3>
+        <p>نحلل نشاطك التجاري ومنافسيك واحتياجاتك بدقة</p>
+      </div>
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-num">📐</div>
+        <h3>التخطيط والتصميم</h3>
+        <p>نضع خطة متكاملة ونصمم النماذج الأولية للموافقة</p>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-num">⚙️</div>
+        <h3>التطوير والتنفيذ</h3>
+        <p>نبني المتجر بأعلى المعايير التقنية والتصميمية</p>
+      </div>
+      <div class="step-item reveal reveal-delay-3">
+        <div class="step-num">🔬</div>
+        <h3>المراجعة والتحسين</h3>
+        <p>اختبار شامل وتحسين كل جانب قبل الإطلاق</p>
+      </div>
+      <div class="step-item reveal reveal-delay-4">
+        <div class="step-num">🚀</div>
+        <h3>التسليم والمتابعة</h3>
+        <p>إطلاق ناجح مع متابعة مستمرة لضمان الأداء الأمثل</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">الأسئلة الشائعة</div>
+      <h2 class="section-title">أسئلة <span>يسألها عملاؤنا</span></h2>
+      <p class="section-subtitle">إجابات واضحة وشفافة على أكثر الأسئلة شيوعًا</p>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-question">كم يستغرق تصميم المتجر من الوقت؟
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">يعتمد وقت التسليم على حجم المشروع وتعقيده. المشاريع البسيطة تستغرق من 3 إلى 7 أيام، بينما المتاجر الاحترافية الكاملة تتراوح بين 10 إلى 21 يومًا. نلتزم دائمًا بالجدول الزمني المتفق عليه.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">هل تقدمون دعمًا فنيًا بعد التسليم؟
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">نعم! نوفر دعمًا فنيًا مجانيًا لمدة شهر كامل بعد التسليم لضمان استقرار المتجر. بعد ذلك يمكنك الاستفادة من باقات الدعم الشهرية المتاحة بأسعار مناسبة.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">ما الفرق بين التصميم على سلة وزد؟
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">كلتا المنصتين رائعتان ولكل منهما مميزاتها. سلة مثالية للمتاجر السعودية مع دعم قوي للسوق المحلي، بينما زد تتميز بمرونتها وخياراتها الواسعة. نساعدك في اختيار المنصة الأنسب لنشاطك.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">هل المتجر سيعمل على الجوال؟
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">بالتأكيد! جميع تصاميمنا متجاوبة 100% مع الجوال، التابلت، والكمبيوتر. نختبر التصميم على أكثر من 20 حجمًا مختلفًا لضمان تجربة مثالية على كل الأجهزة.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">هل يمكنني تعديل المتجر بعد التسليم بنفسي؟
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">نعم! نسلّمك المتجر مع شرح كامل لطريقة إدارته، وندرّبك على إضافة المنتجات والتعديلات الأساسية. كما نوفر فيديوهات تعليمية خاصة بمتجرك.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">كيف يمكنني البدء والتواصل معكم؟
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">ببساطة تواصل معنا عبر واتساب على الرقم 0532203604 أو أرسل بريدًا إلكترونيًا على mustafaallus03@gmail.com أو املأ نموذج التواصل أدناه. سنرد عليك خلال ساعات ونبدأ دراسة مشروعك فورًا.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">تواصل معنا</div>
+      <h2 class="section-title">ابدأ <span>مشروعك الآن</span></h2>
+      <p class="section-subtitle">أخبرنا عن مشروعك وسنتواصل معك خلال ساعات</p>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <h2 style="font-size:1.6rem;font-weight:900;margin-bottom:14px">هل أنت جاهز لتحويل <span style="background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent">متجرك؟</span></h2>
+        <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:32px">تواصل معنا اليوم وابدأ رحلتك نحو متجر إلكتروني احترافي يحقق المبيعات ويبني الثقة</p>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-item-text">رقم الجوال / واتساب</div>
+            <div class="contact-item-val" dir="ltr">+966 532 203 604</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-item-text">البريد الإلكتروني</div>
+            <div class="contact-item-val">mustafaallus03@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⏰</div>
+          <div>
+            <div class="contact-item-text">أوقات الرد</div>
+            <div class="contact-item-val">السبت – الخميس، 9ص – 11م</div>
+          </div>
+        </div>
+        <a href="https://wa.me/966532203604" target="_blank" class="btn-primary" style="display:inline-flex;margin-top:12px;text-decoration:none">
+          💬 تواصل عبر واتساب
+        </a>
+      </div>
+      <div class="contact-form reveal reveal-delay-2">
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>الاسم الكامل *</label>
+              <input type="text" placeholder="أدخل اسمك الكامل" required>
+            </div>
+            <div class="form-group">
+              <label>رقم الجوال *</label>
+              <input type="tel" placeholder="05xxxxxxxx" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>البريد الإلكتروني</label>
+            <input type="email" placeholder="example@email.com">
+          </div>
+          <div class="form-group">
+            <label>نوع المتجر</label>
+            <input type="text" placeholder="مثال: متجر أزياء على سلة">
+          </div>
+          <div class="form-group">
+            <label>تفاصيل المشروع *</label>
+            <textarea placeholder="أخبرنا عن متجرك واحتياجاتك وأهدافك..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            🚀 إرسال الطلب
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:16px">
+          <div class="logo-icon">م</div>
+          <div style="color:white;font-weight:900;font-size:1.2rem">Mustafa <span style="color:var(--secondary-light)">Store</span> Design</div>
+        </div>
+        <p>نحوّل متجرك الإلكتروني إلى علامة تجارية احترافية. متخصصون في تصميم وتطوير متاجر سلة وزد بأعلى المعايير العالمية.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="تويتر / X">𝕏</a>
+          <a href="#" class="social-link" title="إنستغرام">📷</a>
+          <a href="https://wa.me/966532203604" class="social-link" title="واتساب" target="_blank">💬</a>
+          <a href="#" class="social-link" title="سناب شات">👻</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#about">← من نحن</a></li>
+          <li><a href="#services">← خدماتنا</a></li>
+          <li><a href="#portfolio">← أعمالنا</a></li>
+          <li><a href="#why">← لماذا نحن</a></li>
+          <li><a href="#faq">← الأسئلة الشائعة</a></li>
+          <li><a href="#contact">← تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>خدماتنا</h4>
+        <ul>
+          <li><a href="#services">← تصميم متاجر سلة</a></li>
+          <li><a href="#services">← تصميم متاجر زد</a></li>
+          <li><a href="#services">← تحسين SEO</a></li>
+          <li><a href="#services">← تحسين السرعة</a></li>
+          <li><a href="#services">← الهوية البصرية</a></li>
+          <li><a href="#services">← صفحات الهبوط</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📱</span>
+          <span dir="ltr">+966 532 203 604</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📧</span>
+          <span>mustafaallus03@gmail.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">🌍</span>
+          <span>المملكة العربية السعودية</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">⏰</span>
+          <span>السبت – الخميس: 9ص – 11م</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mustafa Store Design — جميع الحقوق محفوظة</span>
+      <span>صُنع بـ ❤️ لنجاح متجرك</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/966532203604" class="whatsapp-btn" target="_blank" title="تواصل عبر واتساب">💬</a>
+
+<script>
+// ===== PARTICLES =====
+const particlesEl = document.getElementById('particles');
+for(let i = 0; i < 20; i++){
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 6 + 2;
+  p.style.cssText = `
+    width:${size}px;height:${size}px;
+    left:${Math.random()*100}%;
+    animation-duration:${Math.random()*15+10}s;
+    animation-delay:${Math.random()*10}s;
+    opacity:${Math.random()*0.5+0.1};
+  `;
+  particlesEl.appendChild(p);
+}
+
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+// ===== THEME TOGGLE =====
+const themeToggle = document.getElementById('themeToggle');
+let dark = false;
+themeToggle.addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+  themeToggle.textContent = dark ? '☀️' : '🌙';
+});
+
+// ===== MOBILE NAV =====
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+const mobileOverlay = document.getElementById('mobileOverlay');
+hamburger.addEventListener('click', () => {
+  mobileNav.classList.toggle('open');
+  mobileOverlay.classList.toggle('open');
+});
+mobileOverlay.addEventListener('click', closeMobile);
+function closeMobile(){
+  mobileNav.classList.remove('open');
+  mobileOverlay.classList.remove('open');
+}
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // Counter animation
+      const counters = e.target.querySelectorAll('.counter');
+      counters.forEach(animateCounter);
+      // Stat bars
+      const bars = e.target.querySelectorAll('.stat-bar');
+      bars.forEach(b => setTimeout(()=>b.classList.add('animated'), 300));
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== COUNTER =====
+function animateCounter(el){
+  const target = parseInt(el.dataset.target);
+  const duration = 1800;
+  const step = target / (duration / 16);
+  let current = 0;
+  const timer = setInterval(()=>{
+    current += step;
+    if(current >= target){
+      el.textContent = target.toLocaleString('ar');
+      clearInterval(timer);
+    } else {
+      el.textContent = Math.floor(current).toLocaleString('ar');
+    }
+  }, 16);
+}
+
+// ===== STATS OBSERVER (separate from reveal) =====
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.counter').forEach(animateCounter);
+      e.target.querySelectorAll('.stat-bar').forEach(b=>setTimeout(()=>b.classList.add('animated'),300));
+    }
+  });
+}, { threshold: 0.3 });
+const statsSection = document.querySelector('.stats');
+if(statsSection) statsObserver.observe(statsSection);
+
+// ===== FAQ =====
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+    if(!isOpen){
+      item.classList.add('active');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+// ===== FORM =====
+function handleSubmit(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = '✅ تم الإرسال بنجاح!';
+  btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+  btn.disabled = true;
+  setTimeout(()=>{
+    btn.innerHTML = '🚀 إرسال الطلب';
+    btn.style.background = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 4000);
+}
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+</script>
+</body>
+</html>
