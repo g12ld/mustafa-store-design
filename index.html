@@ -326,38 +326,142 @@ section{padding:96px 0}
 .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px}
 .pcard{
   background:var(--card-bg);border:1px solid var(--border);
-  border-radius:18px;overflow:hidden;transition:all .4s;
+  border-radius:18px;overflow:hidden;transition:all .4s;cursor:pointer;
 }
 .pcard:hover{transform:translateY(-7px);box-shadow:0 24px 60px var(--shadow-lg)}
 .pcard-img-wrap{
-  height:260px;overflow:hidden;position:relative;cursor:pointer;
+  height:260px;overflow:hidden;position:relative;
   background:var(--bg-tertiary);
 }
 .pcard-img-wrap img{
-  width:100%;height:auto;display:block;
-  transform:translateY(0);
-  transition:transform 6s cubic-bezier(.25,.46,.45,.94);
-  will-change:transform;
+  width:100%;height:100%;display:block;object-fit:cover;object-position:top;
+  transition:transform .5s ease;
 }
-.pcard:hover .pcard-img-wrap img{
-  transform:translateY(calc(-100% + 260px));
-}
+.pcard:hover .pcard-img-wrap img{transform:scale(1.04)}
 .pcard-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 50%,rgba(7,30,30,.7) 100%);
-  opacity:0;transition:opacity .4s;
-  display:flex;align-items:flex-end;padding:16px;
+  background:linear-gradient(to bottom,transparent 30%,rgba(7,30,30,.82) 100%);
+  opacity:0;transition:opacity .35s;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:20px;gap:10px;
 }
 .pcard:hover .pcard-overlay{opacity:1}
-.pcard-scroll-hint{
-  color:white;font-size:.8rem;font-weight:600;
-  display:flex;align-items:center;gap:6px;
+.pcard-preview-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 22px;border-radius:10px;
+  background:var(--brand);color:var(--hero-bg);
+  font-weight:800;font-size:.88rem;
+  transform:translateY(14px);transition:transform .35s;
+  border:none;white-space:nowrap;
 }
+.pcard:hover .pcard-preview-btn{transform:translateY(0)}
 .pcard-content{padding:20px}
 .ptag{display:inline-block;padding:4px 12px;border-radius:6px;background:rgba(207,235,236,.3);color:var(--brand-darker);font-size:.74rem;font-weight:700;margin-bottom:9px}
 [data-theme="dark"] .ptag{background:rgba(207,235,236,.12);color:var(--brand)}
 .pcard-content h3{font-size:1.05rem;font-weight:700;margin-bottom:6px}
 .pcard-content p{font-size:.85rem;color:var(--text-secondary)}
+
+/* ── LIGHTBOX ── */
+.lb-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(4,14,14,.92);
+  backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+  padding:20px;
+}
+.lb-overlay.lb-open{opacity:1;pointer-events:all}
+.lb-panel{
+  width:100%;max-width:960px;
+  height:90vh;max-height:860px;
+  background:var(--card-bg);
+  border-radius:22px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,.7);
+  border:1px solid rgba(207,235,236,.15);
+  transform:scale(.94) translateY(20px);
+  transition:transform .35s ease;
+}
+.lb-overlay.lb-open .lb-panel{transform:scale(1) translateY(0)}
+.lb-header{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 22px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;background:var(--bg-secondary);
+}
+.lb-nav-btn{
+  width:38px;height:38px;border-radius:10px;
+  background:var(--bg-tertiary);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;cursor:pointer;color:var(--text);
+  transition:all .2s;flex-shrink:0;
+}
+.lb-nav-btn:hover{background:var(--brand);border-color:var(--brand);color:var(--hero-bg)}
+.lb-nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.lb-title-wrap{flex:1;display:flex;align-items:center;gap:10px;min-width:0}
+.lb-tag{padding:4px 12px;border-radius:6px;background:rgba(207,235,236,.25);color:var(--brand-darker);font-size:.74rem;font-weight:700;flex-shrink:0}
+[data-theme="dark"] .lb-tag{background:rgba(207,235,236,.12);color:var(--brand)}
+.lb-title{font-weight:800;font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-counter{font-size:.8rem;color:var(--text-muted);white-space:nowrap;margin-right:auto}
+.lb-close{
+  width:38px;height:38px;border-radius:10px;
+  background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;cursor:pointer;color:#ef4444;
+  transition:all .2s;flex-shrink:0;
+}
+.lb-close:hover{background:#ef4444;color:#fff}
+.lb-body{flex:1;display:flex;overflow:hidden;position:relative}
+.lb-scroll{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  scroll-behavior:smooth;
+  background:var(--bg-tertiary);
+}
+.lb-scroll::-webkit-scrollbar{width:5px}
+.lb-scroll::-webkit-scrollbar-track{background:transparent}
+.lb-scroll::-webkit-scrollbar-thumb{background:var(--brand-mid);border-radius:3px}
+.lb-img{width:100%;height:auto;display:block}
+.lb-progress{
+  width:4px;background:rgba(207,235,236,.1);
+  flex-shrink:0;position:relative;
+}
+.lb-progress-bar{
+  width:100%;background:var(--gradient-brand);
+  border-radius:2px;transition:height .1s;
+  position:absolute;top:0;right:0;
+}
+.lb-footer{
+  border-top:1px solid var(--border);
+  padding:14px 22px;flex-shrink:0;
+  background:var(--bg-secondary);
+  display:flex;align-items:center;gap:12px;
+}
+.lb-thumbs{
+  display:flex;gap:10px;overflow-x:auto;flex:1;
+  scrollbar-width:none;
+}
+.lb-thumbs::-webkit-scrollbar{display:none}
+.lb-thumb{
+  width:70px;height:54px;border-radius:9px;overflow:hidden;
+  flex-shrink:0;cursor:pointer;
+  border:2.5px solid transparent;transition:all .25s;opacity:.55;
+}
+.lb-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.lb-thumb.active{border-color:var(--brand);opacity:1;transform:scale(1.06)}
+.lb-thumb:hover{opacity:.85;border-color:rgba(207,235,236,.5)}
+.lb-hint{
+  font-size:.75rem;color:var(--text-muted);
+  white-space:nowrap;flex-shrink:0;
+  display:flex;align-items:center;gap:5px;
+}
+@media(max-width:600px){
+  .lb-panel{height:95vh;border-radius:16px}
+  .lb-footer{padding:10px 14px}
+  .lb-thumb{width:54px;height:42px}
+  .lb-header{padding:12px 14px}
+}
 
 /* ── PRICING ── */
 .pricing{background:var(--bg)}
@@ -824,14 +928,16 @@ footer{background:#071e1e;color:rgba(255,255,255,.65);padding:72px 0 28px}
     <div class="section-header reveal">
       <div class="stag">أعمالنا</div>
       <h2 class="section-title">متاجر <span>صمّمناها بالفعل</span></h2>
-      <p class="section-sub">مرّر على الصورة لمعاينة المتجر كاملاً</p>
+      <p class="section-sub">اضغط على أي متجر لفتح معاينة كاملة وتصفّح التصميم من الأعلى للأسفل</p>
       <div class="divider"></div>
     </div>
     <div class="portfolio-grid">
-      <div class="pcard reveal">
+      <div class="pcard reveal" onclick="openLB(0)">
         <div class="pcard-img-wrap">
           <img src="متجر سبح .png" alt="متجر سبح">
-          <div class="pcard-overlay"><div class="pcard-scroll-hint">👆 تمرير لمعاينة المتجر</div></div>
+          <div class="pcard-overlay">
+            <div class="pcard-preview-btn">🔍 معاينة المتجر كاملاً</div>
+          </div>
         </div>
         <div class="pcard-content">
           <span class="ptag">سلة</span>
@@ -839,10 +945,12 @@ footer{background:#071e1e;color:rgba(255,255,255,.65);padding:72px 0 28px}
           <p>تصميم احترافي لمتجر سبح مع تجربة مستخدم متميزة وصفحات منتجات محسّنة</p>
         </div>
       </div>
-      <div class="pcard reveal rd1">
+      <div class="pcard reveal rd1" onclick="openLB(1)">
         <div class="pcard-img-wrap">
           <img src="متجر عبايات.png" alt="متجر عبايات">
-          <div class="pcard-overlay"><div class="pcard-scroll-hint">👆 تمرير لمعاينة المتجر</div></div>
+          <div class="pcard-overlay">
+            <div class="pcard-preview-btn">🔍 معاينة المتجر كاملاً</div>
+          </div>
         </div>
         <div class="pcard-content">
           <span class="ptag">زد</span>
@@ -850,10 +958,12 @@ footer{background:#071e1e;color:rgba(255,255,255,.65);padding:72px 0 28px}
           <p>تصميم فاخر لمتجر عبايات نسائية يعكس الأناقة ويرفع معدل التحويل</p>
         </div>
       </div>
-      <div class="pcard reveal rd2">
+      <div class="pcard reveal rd2" onclick="openLB(2)">
         <div class="pcard-img-wrap">
           <img src="متجر عطور.png" alt="متجر عطور">
-          <div class="pcard-overlay"><div class="pcard-scroll-hint">👆 تمرير لمعاينة المتجر</div></div>
+          <div class="pcard-overlay">
+            <div class="pcard-preview-btn">🔍 معاينة المتجر كاملاً</div>
+          </div>
         </div>
         <div class="pcard-content">
           <span class="ptag">سلة</span>
@@ -861,10 +971,12 @@ footer{background:#071e1e;color:rgba(255,255,255,.65);padding:72px 0 28px}
           <p>تصميم راقٍ يعكس فخامة العطور مع صور منتجات احترافية وتجربة شراء سلسة</p>
         </div>
       </div>
-      <div class="pcard reveal">
+      <div class="pcard reveal" onclick="openLB(3)">
         <div class="pcard-img-wrap">
           <img src="متجر عود اعمال.png" alt="متجر عود أعمال">
-          <div class="pcard-overlay"><div class="pcard-scroll-hint">👆 تمرير لمعاينة المتجر</div></div>
+          <div class="pcard-overlay">
+            <div class="pcard-preview-btn">🔍 معاينة المتجر كاملاً</div>
+          </div>
         </div>
         <div class="pcard-content">
           <span class="ptag">زد</span>
@@ -872,10 +984,12 @@ footer{background:#071e1e;color:rgba(255,255,255,.65);padding:72px 0 28px}
           <p>هوية بصرية قوية ومتجر متكامل لمنتجات العود الفاخرة مع تصميم يليق بالمنتج</p>
         </div>
       </div>
-      <div class="pcard reveal rd1">
+      <div class="pcard reveal rd1" onclick="openLB(4)">
         <div class="pcard-img-wrap">
           <img src="متجر مستلزمات رجال.png" alt="متجر مستلزمات رجال">
-          <div class="pcard-overlay"><div class="pcard-scroll-hint">👆 تمرير لمعاينة المتجر</div></div>
+          <div class="pcard-overlay">
+            <div class="pcard-preview-btn">🔍 معاينة المتجر كاملاً</div>
+          </div>
         </div>
         <div class="pcard-content">
           <span class="ptag">سلة</span>
@@ -1176,6 +1290,34 @@ footer{background:#071e1e;color:rgba(255,255,255,.65);padding:72px 0 28px}
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lbOverlay" onclick="handleOverlayClick(event)">
+  <div class="lb-panel" id="lbPanel">
+    <div class="lb-header">
+      <button class="lb-nav-btn" id="lbPrev" onclick="lbNav(-1)" title="السابق">&#8594;</button>
+      <button class="lb-nav-btn" id="lbNext" onclick="lbNav(1)" title="التالي">&#8592;</button>
+      <div class="lb-title-wrap">
+        <span class="lb-tag" id="lbTag">سلة</span>
+        <span class="lb-title" id="lbTitle">متجر السبح</span>
+      </div>
+      <span class="lb-counter" id="lbCounter">1 / 5</span>
+      <button class="lb-close" onclick="closeLB()" title="إغلاق">✕</button>
+    </div>
+    <div class="lb-body">
+      <div class="lb-scroll" id="lbScroll">
+        <img class="lb-img" id="lbImg" src="" alt="">
+      </div>
+      <div class="lb-progress">
+        <div class="lb-progress-bar" id="lbProgressBar" style="height:0%"></div>
+      </div>
+    </div>
+    <div class="lb-footer">
+      <div class="lb-thumbs" id="lbThumbs"></div>
+      <div class="lb-hint">↕ اسحب للتصفح</div>
+    </div>
+  </div>
+</div>
+
 <!-- WA FLOAT -->
 <a href="https://wa.me/966532203604" class="wa-float" target="_blank" title="واتساب">💬</a>
 <!-- BACK TOP -->
@@ -1244,6 +1386,86 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     const t=document.querySelector(a.getAttribute('href'));
     if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
   });
+});
+
+// ── LIGHTBOX ──
+const lbProjects=[
+  {src:'متجر سبح .png',   title:'متجر السبح',          tag:'سلة'},
+  {src:'متجر عبايات.png', title:'متجر العبايات',        tag:'زد'},
+  {src:'متجر عطور.png',   title:'متجر العطور',          tag:'سلة'},
+  {src:'متجر عود اعمال.png',title:'متجر عود الأعمال',   tag:'زد'},
+  {src:'متجر مستلزمات رجال.png',title:'متجر مستلزمات الرجال',tag:'سلة'},
+];
+let lbIdx=0;
+const lbOverlay=document.getElementById('lbOverlay');
+const lbImg=document.getElementById('lbImg');
+const lbTitle=document.getElementById('lbTitle');
+const lbTag=document.getElementById('lbTag');
+const lbCounter=document.getElementById('lbCounter');
+const lbScroll=document.getElementById('lbScroll');
+const lbProgress=document.getElementById('lbProgressBar');
+const lbThumbs=document.getElementById('lbThumbs');
+const lbPrev=document.getElementById('lbPrev');
+const lbNext=document.getElementById('lbNext');
+
+// build thumbnails
+lbProjects.forEach((p,i)=>{
+  const d=document.createElement('div');
+  d.className='lb-thumb'+(i===0?' active':'');
+  d.innerHTML=`<img src="${p.src}" alt="${p.title}">`;
+  d.onclick=()=>lbGoto(i);
+  lbThumbs.appendChild(d);
+});
+
+function lbGoto(i){
+  lbIdx=i;
+  const p=lbProjects[i];
+  lbImg.src=p.src;
+  lbTitle.textContent=p.title;
+  lbTag.textContent=p.tag;
+  lbCounter.textContent=(i+1)+' / '+lbProjects.length;
+  lbScroll.scrollTop=0;
+  lbProgress.style.height='0%';
+  lbPrev.disabled=(i===0);
+  lbNext.disabled=(i===lbProjects.length-1);
+  document.querySelectorAll('.lb-thumb').forEach((t,j)=>{
+    t.classList.toggle('active',j===i);
+    if(j===i) t.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  });
+}
+function openLB(i){
+  lbGoto(i);
+  lbOverlay.classList.add('lb-open');
+  document.body.style.overflow='hidden';
+}
+function closeLB(){
+  lbOverlay.classList.remove('lb-open');
+  document.body.style.overflow='';
+}
+function lbNav(dir){
+  const ni=lbIdx+dir;
+  if(ni>=0&&ni<lbProjects.length) lbGoto(ni);
+}
+function handleOverlayClick(e){
+  if(e.target===lbOverlay) closeLB();
+}
+lbScroll.addEventListener('scroll',()=>{
+  const s=lbScroll,max=s.scrollHeight-s.clientHeight;
+  const pct=max>0?Math.round((s.scrollTop/max)*100):0;
+  lbProgress.style.height=pct+'%';
+});
+document.addEventListener('keydown',e=>{
+  if(!lbOverlay.classList.contains('lb-open'))return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowRight') lbNav(-1);
+  if(e.key==='ArrowLeft')  lbNav(1);
+});
+// touch swipe
+let tsX=0;
+lbOverlay.addEventListener('touchstart',e=>{tsX=e.touches[0].clientX},{passive:true});
+lbOverlay.addEventListener('touchend',e=>{
+  const dx=tsX-e.changedTouches[0].clientX;
+  if(Math.abs(dx)>60) lbNav(dx>0?1:-1);
 });
 </script>
 </body>
